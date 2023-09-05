@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Spreadsheet;
-using Alignment = DocumentFormat.OpenXml.Math.Alignment;
+﻿using ClosedXML.Excel;
 
 namespace ExcelGenerator;
 
@@ -18,19 +15,19 @@ public static class SaveToExcell
         ws.Cell("A1").Value = companies.CompanyName;
             ws.Cell("A1").Style
                 .Font.SetFontSize(15)
-                .Font.SetFontName("Arial");
+                .Font.SetFontName("Arial Narrow");
             ws.Cell("A1").Style.Font.Bold = true;
             ws.Cell("A1").Style.Font.SetFontColor(XLColor.Blue);
         
         ws.Cell("A2").Value = companies.Address;
         ws.Cell("A2").Style
             .Font.SetFontSize(12)
-            .Font.SetFontName("Arial");
+            .Font.SetFontName("Arial Narrow");
         
         ws.Cell("A3").Value = companies.Contact;
         ws.Cell("A3").Style
             .Font.SetFontSize(12)
-            .Font.SetFontName("Arial");
+            .Font.SetFontName("Arial Narrow");
         ws.Cell("A3").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
 
         ws.Cell("A5").Value = invoice.ITitle;

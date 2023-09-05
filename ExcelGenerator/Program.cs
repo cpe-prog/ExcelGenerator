@@ -1,10 +1,9 @@
-﻿using ClosedXML;
-using DocumentFormat.OpenXml.Spreadsheet;
+﻿using DocumentFormat.OpenXml.Office2016.Drawing.Command;
 using ExcelGenerator;
 
 var company = new Company()
 {
-    CompanyName = "Microsoft",
+    CompanyName = "DEBIT EXPRESS",
     Address = "Mansalay, Oriental Mindoro",
     Contact = 0935793759
 };
@@ -20,7 +19,7 @@ var invoice = new Invoice()
 var bill = new Bill()
 {
     Name = "John Doe",
-    CompanyName = "FaceBook",
+    CompanyName = "PCST",
     Address = "Mindoro",
     Phone = 03953957,
     Email = "sample@gmail.com"
@@ -34,6 +33,10 @@ var receipt = new Receipt()
 };
 
 const string? filePath = @"C:\Users\grian\Desktop\Excel\Report.xlsx";
-SaveToExcell.Export(company, invoice, bill, receipt, filePath);
+if (File.Exists(filePath))
+{
+    File.Delete(filePath);
+}
 
+SaveToExcell.Export(company, invoice, bill, receipt, filePath);
 Console.WriteLine("Saved Successfully");
