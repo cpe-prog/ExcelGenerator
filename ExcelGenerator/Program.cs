@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Office2016.Drawing.Command;
-using ExcelGenerator;
+﻿using ExcelGenerator;
 
 var company = new Company()
 {
@@ -13,7 +12,8 @@ var invoice = new Invoice()
     ITitle = "INVOICE",
     INumber = 8375,
     IDate = DateTime.Now,
-    CostumerId = 764
+    CostumerId = 764,
+    Terms = "30 Days"
 };
 
 var bill = new Bill()
