@@ -1,13 +1,13 @@
 ﻿using ExcelGenerator;
 
-var company = new Company()
+var company = new Company
 {
     CompanyName = "DEBIT EXPRESS",
     Address = "Mansalay, Oriental Mindoro",
     Contact = 0935793759
 };
 
-var invoice = new Invoice()
+var invoice = new Invoice
 {
     ITitle = "INVOICE",
     INumber = 8375,
@@ -16,7 +16,7 @@ var invoice = new Invoice()
     Terms = "30 Days"
 };
 
-var bill = new Bill()
+var bill = new Bill
 {
     Name = "John Doe",
     CompanyName = "PCST",
@@ -25,7 +25,7 @@ var bill = new Bill()
     Email = "sample@gmail.com"
 };
 
-var receipt = new Receipt()
+var receipt = new Receipt
 {
     Description = "Sample Product", 
     Quantity = 2, 
