@@ -34,7 +34,7 @@ public static class SaveToExcell
         ws.Cell("D5").Value = "Customer ID";
         ws.Cell("D6").Value = invoice.CostumerId;
         ws.Cell("E3").Value = "Date";
-        ws.Cell("E4").Value = invoice.IDate;
+        ws.Cell("E4").Value = invoice.IDate.Date;
         ws.Cell("E5").Value = "TERMS";
         ws.Cell("E6").Value = invoice.Terms;
 
@@ -75,6 +75,7 @@ public static class SaveToExcell
         billHeading.Style
             .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left)
             .Fill.SetBackgroundColor(XLColor.Gray)
+            .Font.SetFontSize(15)
             .Border.OutsideBorder = XLBorderStyleValues.Thin;
         ws.Cell("A10").Value = bill.Name;
         ws.Cell("A11").Value = bill.CompanyName;
@@ -85,12 +86,33 @@ public static class SaveToExcell
         billRange.Style
             .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left)
             .Font.SetFontSize(12);
-        
-        ws.Cell("A17").Value = receipt.Description;
-        ws.Cell("D17").Value = receipt.Quantity;
-        ws.Cell("E17").Value = receipt.UnitPrice;
-        ws.Cell("E17").Value = receipt.Amount;
 
+        ws.Cell("A17").Value = "Description";
+        ws.Cell("C17").Value = "Quantity";
+        ws.Cell("D17").Value = "UnitPrice";
+        ws.Cell("E17").Value = "Description";
+        var receiptHeadingRange = ws.Range("A17:E17");
+        receiptHeadingRange.Style
+            .Fill.SetBackgroundColor(XLColor.Gray)
+            .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center)
+            .Font.SetFontSize(12)
+            .Border.BottomBorder = XLBorderStyleValues.Thin;
+        ws.Cell("A18").Value = receipt.Description;
+        ws.Cell("C18").Value = receipt.Quantity;
+        ws.Cell("D18").Value = receipt.UnitPrice;
+        ws.Cell("E18").Value = receipt.Amount;
+        var receiptRange = ws.Range("A18:E18");
+        var brRange = ws.Range("C17:E40");
+        receiptRange.Style
+            .Font.SetFontSize(12);
+        brRange.Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+        
+        var receiptTable = ws.Range("A17:E40");
+        receiptTable.Style
+            .Border.OutsideBorder = XLBorderStyleValues.Thin;
+        
+        
+        
         workbook.SaveAs(filePath);
     }
 }
