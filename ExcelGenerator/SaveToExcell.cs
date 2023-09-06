@@ -88,6 +88,7 @@ public static class SaveToExcell
             .Font.SetFontSize(12);
 
         ws.Cell("A17").Value = "Description";
+        ws.Range("A17:B17").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
         ws.Cell("C17").Value = "Quantity";
         ws.Cell("D17").Value = "UnitPrice";
         ws.Cell("E17").Value = "Description";
@@ -101,16 +102,28 @@ public static class SaveToExcell
         ws.Cell("C18").Value = receipt.Quantity;
         ws.Cell("D18").Value = receipt.UnitPrice;
         ws.Cell("E18").Value = receipt.Amount;
+        ws.Range("A18:A38").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
         var receiptRange = ws.Range("A18:E18");
-        var brRange = ws.Range("C17:E40");
+        var brRange = ws.Range("C17:E38");
         receiptRange.Style
             .Font.SetFontSize(12);
         brRange.Style.Border.LeftBorder = XLBorderStyleValues.Thin;
         
         var receiptTable = ws.Range("A17:E40");
         receiptTable.Style
+            .Font.SetFontSize(12)
             .Border.OutsideBorder = XLBorderStyleValues.Thin;
-        
+
+        ws.Cell("C40").Value = "TOTAL";
+        ws.Cell("E40").Value = "0000";
+        ws.Cell("E40").Style
+            .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
+        var topBorder = ws.Range("A39:E40");
+        var leftBorder = ws.Range("C40");
+        topBorder.Style
+            .Border.SetTopBorder(XLBorderStyleValues.Thin);
+        leftBorder.Style
+            .Border.SetLeftBorder(XLBorderStyleValues.Thin);
         
         
         workbook.SaveAs(filePath);
