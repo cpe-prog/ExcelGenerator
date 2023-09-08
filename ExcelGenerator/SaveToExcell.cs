@@ -1,5 +1,4 @@
 ﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace ExcelGenerator;
 
@@ -11,7 +10,6 @@ public static class SaveToExcell
           
         var workbook = new XLWorkbook();
         var ws = workbook.Worksheets.Add("Report");
-
 
         ws.ColumnWidth = 15;
         ws.Cell("A1").Value = companies.CompanyName;
@@ -84,8 +82,7 @@ public static class SaveToExcell
         ws.Cell("A13").Value = bill.Phone;
         ws.Cell("A14").Value = bill.Email;
         var billRange = ws.Range("A9:A14");
-        billRange.Style
-            .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left)
+        billRange.Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left)
             .Font.SetFontSize(12);
 
         ws.Cell("A17").Value = "Description";
@@ -106,26 +103,21 @@ public static class SaveToExcell
         ws.Range("A18:A38").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
         var receiptRange = ws.Range("A18:E18");
         var brRange = ws.Range("C17:E38");
-        receiptRange.Style
-            .Font.SetFontSize(12);
+        receiptRange.Style.Font.SetFontSize(12);
         brRange.Style.Border.LeftBorder = XLBorderStyleValues.Thin;
         
         var receiptTable = ws.Range("A17:E40");
-        receiptTable.Style
-            .Font.SetFontSize(12)
+        receiptTable.Style.Font.SetFontSize(12)
             .Border.OutsideBorder = XLBorderStyleValues.Thin;
 
         ws.Cell("C40").Value = "TOTAL";
         ws.Cell("E40").Value = "0000";
-        ws.Cell("E40").Style
-            .Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
+        ws.Range("A39:E40").Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
+        ws.Cell("E40").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
         var topBorder = ws.Range("A39:E40");
-        var leftBorder = ws.Range("C40");
-        topBorder.Style
-            .Border.SetTopBorder(XLBorderStyleValues.Thin);
-        leftBorder.Style
-            .Border.SetLeftBorder(XLBorderStyleValues.Thin);
-        
+        var leftBorder = ws.Range("C39:C40");
+        topBorder.Style.Border.SetTopBorder(XLBorderStyleValues.Thin);
+        leftBorder.Style.Border.SetLeftBorder(XLBorderStyleValues.Thin);
         
         workbook.SaveAs(filePath);
     }
